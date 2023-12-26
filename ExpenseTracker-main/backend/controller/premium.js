@@ -3,6 +3,7 @@ const Sequelize = require('sequelize')
 const Expense = require('../models/expense')
 const User = require('../models/user')
 
+
 exports.checkPremium = async (req, res) => {
     try {
 
@@ -15,11 +16,11 @@ exports.checkPremium = async (req, res) => {
     }
 }
 
+
 exports.showLeaderBoard = async (req, res) => {
     try {
         // return res.json(req.user)
         if (req.user.isPremiumUser) {
-
 
             const result = await User.findAll({
                 attributes: [
