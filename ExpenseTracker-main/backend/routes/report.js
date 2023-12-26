@@ -3,8 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const auth = require('../middleware/auth')
-const { Op, literal ,fn} = require('sequelize')
-
+const { Op, literal, fn } = require('sequelize')
 
 router.post('/getdate', auth, async (req, res) => {
     try {
@@ -22,7 +21,6 @@ router.post('/getdate', auth, async (req, res) => {
     }
 })
 
-
 router.get('/getweekly', auth, async (req, res) => {
     try {
         if (req.user.isPremiumUser) {
@@ -31,15 +29,15 @@ router.get('/getweekly', auth, async (req, res) => {
             currDate.setDate(currDate.getDate() - 7)
             const result = await req.user.getExpenses({
                 attributes: [
-                    [fn('DAYNAME',literal('createdAt')) , 'week'],
-                    [literal('SUM(expense)') , 'totalAmount']
-            ], 
+                    [fn('DAYNAME', literal('createdAt')), 'week'],
+                    [literal('SUM(expense)'), 'totalAmount']
+                ],
                 where: {
                     createdAt: {
                         [Op.gt]: currDate
                     }
                 },
-                group : [fn('DAYNAME',literal('createdAt'))]
+                group: [fn('DAYNAME', literal('createdAt'))]
             })
             return res.json(result)
         } else {
@@ -60,9 +58,9 @@ router.post('/getMonthly', auth, async (req, res) => {
             const startDate = new Date(month);
             const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 1);
             const result = await req.user.getExpenses({
-                attributes : [
-                    [fn('DATE' , literal('createdAt')) , 'date'],
-                    [literal('SUM(expense)') , 'totalAmount']
+                attributes: [
+                    [fn('DATE', literal('createdAt')), 'date'],
+                    [literal('SUM(expense)'), 'totalAmount']
                 ],
                 where: {
                     createdAt: {
@@ -71,7 +69,7 @@ router.post('/getMonthly', auth, async (req, res) => {
 
                     }
                 },
-                group: [fn('DATE' , literal('createdAt'))]
+                group: [fn('DATE', literal('createdAt'))]
             })
             return res.json(result)
         } else {
@@ -94,7 +92,7 @@ router.post('/getYearly', auth, async (req, res) => {
             const endYear = new Date(startYear.getFullYear() + 1, 0, 1)
             const result = await req.user.getExpenses({
                 attributes: [
-                    [fn('MONTHNAME',literal('createdAt')), 'month'],
+                    [fn('MONTHNAME', literal('createdAt')), 'month'],
                     [literal('SUM(expense)'), 'totalAmount'],
                 ],
                 where: {
@@ -103,7 +101,7 @@ router.post('/getYearly', auth, async (req, res) => {
                         [Op.lt]: endYear,
                     },
                 },
-                group: [fn('MONTHNAME',literal('createdAt'))],
+                group: [fn('MONTHNAME', literal('createdAt'))],
                 raw: true,
             });
             return res.json(result)
@@ -115,7 +113,5 @@ router.post('/getYearly', auth, async (req, res) => {
         return res.status(500).json({ success: false, msg: "Internal server error" })
     }
 })
-
-
 
 module.exports = router;

@@ -73,7 +73,6 @@ exports.editExpense = (req, res) => {
         return res.status(403).json({ success: false })
     })
 }
-
 exports.getExpenses = async (req, res) => {
     try {
         const page = +req.query.page || 1
