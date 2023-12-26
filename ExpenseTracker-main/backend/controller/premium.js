@@ -3,7 +3,6 @@ const Sequelize = require('sequelize')
 const Expense = require('../models/expense')
 const User = require('../models/user')
 
-
 exports.checkPremium = async (req, res) => {
     try {
 

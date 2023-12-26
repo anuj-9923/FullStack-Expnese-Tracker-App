@@ -3,7 +3,6 @@ const sequelize = require('../util/db')
 
 const S3Services = require('../services/s3services')
 
-
 exports.getAll = (req, res) => {
     req.user.getExpenses({
         raw: true,
@@ -17,6 +16,7 @@ exports.getAll = (req, res) => {
             return res.status(500).json({ msg: "Internal server error" })
         })
 }
+
 
 exports.addExpense = async (req, res) => {
     const expense = req.body.expense;
