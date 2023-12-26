@@ -15,12 +15,10 @@ exports.checkPremium = async (req, res) => {
     }
 }
 
-
 exports.showLeaderBoard = async (req, res) => {
     try {
         // return res.json(req.user)
         if (req.user.isPremiumUser) {
-
             const result = await User.findAll({
                 attributes: [
                     'id',
@@ -35,6 +33,7 @@ exports.showLeaderBoard = async (req, res) => {
             return res.status(403).json({ success: false, msg: "you are not a premium user" })
 
         }
+
     } catch (e) {
         console.log(e)
         return res.status(500).json({ success: false, msg: "Internal server error" })
