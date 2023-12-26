@@ -32,11 +32,9 @@ app.use(express.json())
 // app.use(helmet())
 app.use(compression())
 
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname , 'access.log'),{flags : 'a'})
-
-
-app.use(morgan('combined',{ stream :accessLogStream}))
+app.use(morgan('combined', { stream: accessLogStream }))
 
 User.hasMany(Expense)
 Expense.belongsTo(User)
@@ -50,22 +48,20 @@ resetPassword.belongsTo(User)
 User.hasMany(Download)
 Download.belongsTo(User)
 
-app.use('/expense' , expenseRoutes)
-app.use('/user' , userRoutes)
-app.use('/payment' , paymentsRoutes)
-app.use('/premium' , premiumRoutes)
+app.use('/expense', expenseRoutes)
+app.use('/user', userRoutes)
+app.use('/payment', paymentsRoutes)
+app.use('/premium', premiumRoutes)
 app.use('/password', passwordRoutes)
-app.use('/report' , reportRoutes)
+app.use('/report', reportRoutes)
 
-app.use(express.static(path.join(__dirname , '..' , 'frontend')))
-
-
+app.use(express.static(path.join(__dirname, '..', 'frontend')))
 
 
 sequelize
-.sync()
-// .sync({force : true})
-.then((result) => {
-    app.listen(4000)
-}).catch(e => console.log(e))
+    .sync()
+    // .sync({force : true})
+    .then((result) => {
+        app.listen(4000)
+    }).catch(e => console.log(e))
 
