@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
 </head>
 
 <body class="container my-2">
@@ -29,7 +28,6 @@
             <input type="date" name="date" id="date" required>
             <button type="submit">submit</button>
         </form>
-
         <form class="hide my-2" id="monthly-form">
             <label for="month-picker">Select the month : </label>
 
@@ -61,7 +59,6 @@
             <button type="submit">Submit</button>
         </form>
 
-
         <form class="hide my-2" id="yearly-form">
             <label for="year-picker">Select the year : </label>
 
@@ -76,28 +73,27 @@
             <button type="submit">Submit</button>
         </form>
 
-
     </div>
     <div id="report-display">
         <div class="hide container" id="daily">
             <h3> day to day expense report for the day : <span></span></h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>description</th>
-                        <th>amount</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>description</th>
+                            <th>amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Total</td>
-                        <td id="daily-total">0</td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td id="daily-total">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
         </div>
         <div class="hide" id="weekly">
             <h3>Weekly expense report</h3>
