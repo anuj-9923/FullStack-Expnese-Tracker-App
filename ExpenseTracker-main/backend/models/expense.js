@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize')
-
 const sequelize = require('../util/db')
 
 const Expense = sequelize.define('expense', {
@@ -21,14 +20,15 @@ const Expense = sequelize.define('expense', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    createdAt : {
-        type : Sequelize.DATEONLY,
-        defaultValue : Sequelize.NOW
+    createdAt: {
+        type: Sequelize.DATEONLY,
+        defaultValue: Sequelize.NOW
     }
 },
     {
         timestamps: false
 
     })
+
 
 module.exports = Expense;

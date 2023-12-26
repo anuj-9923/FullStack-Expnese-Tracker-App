@@ -17,7 +17,6 @@ exports.getAll = (req, res) => {
         })
 }
 
-
 exports.addExpense = async (req, res) => {
     const expense = req.body.expense;
     const description = req.body.description;
